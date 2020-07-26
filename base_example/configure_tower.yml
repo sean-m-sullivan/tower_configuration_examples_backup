@@ -9,7 +9,7 @@
 
   collections:
    - awx.awx
-   - redhat_cop.tower_configuration
+   - sean_m_sullivan.tower_configuration
 
   pre_tasks:
     - name: Include vars from tower_configs directory
