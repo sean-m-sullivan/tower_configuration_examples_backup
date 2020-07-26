@@ -20,11 +20,8 @@ jobs:
         run: cd .github && git clone https://github.com/ansible/awx.git
 
       - name: "Install dependencies"
-        run: pip install -r .github/requirements.txt && git clone https://github.com/redhat-cop/tower_configuration.git
-        
-      - name: "Install galaxy collection from git"
-        run: cd tower_configuration && ansible-galaxy collection build
-        
+        run: pip install -r .github/requirements.txt
+
       - name: Display Versions
         run: which python && pip --version && ansible --version
 
