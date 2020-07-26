@@ -8,6 +8,11 @@
   # tower_hostname: ansible-tower-web-svc-test-project.example.com
   # tower_username: admin
   # tower_password: changeme
+
+  collections:
+   - awx.awx
+   - sean_m_sullivan.tower_configuration
+
   pre_tasks:
     - name: Include vars from tower_configs directory
       include_vars:
