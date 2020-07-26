@@ -23,7 +23,7 @@ jobs:
         run: pip install -r .github/requirements.txt && git clone https://github.com/redhat-cop/tower_configuration.git
         
       - name: "Install galaxy collection from git"
-        run: cd tower_configuration && cd ansible-galaxy collection build
+        run: cd tower_configuration && ansible-galaxy collection build
         
       - name: Display Versions
         run: which python && pip --version && ansible --version
