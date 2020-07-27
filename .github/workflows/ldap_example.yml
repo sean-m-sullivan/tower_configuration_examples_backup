@@ -1,0 +1,41 @@
+name: LDAP example
+on: push
+
+jobs:
+  # Label of the runner job
+  runner-job:
+    # You must use a Linux environment when using service containers or container jobs
+    runs-on: ubuntu-latest
+
+    # Service containers to run with `runner-job`
+    services:
+      # Label used to access the service container
+      openldap:
+        # Docker Hub image
+        image: osixia/openldap:latest
+        ports:
+          - 389:389
+          - 636:636
+      ldap_admin:
+        # Docker Hub image
+        image: osixia/phpldapadmin:latest
+        ports:
+          - 8443:443
+
+    steps:
+      - name: "Checkout Project"
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: "Clone AWX"
+        run: cd .github && git clone https://github.com/ansible/awx.git
+
+      - name: "Install dependencies"
+        run: pip install -r .github/requirements.txt
+
+      - name: Display Versions
+        run: which python && pip --version && ansible --version
