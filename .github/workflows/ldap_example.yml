@@ -16,11 +16,18 @@ jobs:
         ports:
           - 389:389
           - 636:636
+        env:
+          LDAP_ORGANISATION: example
+          LDAP_DOMAIN: example.com
+          LDAP_ADMIN_PASSWORD: password
+        
       ldap_admin:
         # Docker Hub image
         image: osixia/phpldapadmin:latest
         ports:
           - 8443:443
+        env:
+          PHPLDAPADMIN_LDAP_HOSTS: "ldap"
 
     steps:
       - name: "Checkout Project"
